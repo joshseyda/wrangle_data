@@ -1,3 +1,7 @@
+CREATE DATABASE democracy_works
+DROP TABLE IF EXISTS precinct CASCADE;
+DROP TABLE IF EXISTS citizens CASCADE;
+
 CREATE TABLE precinct 
 (ZIP char(5), LATITUDE double precision, LONGITUDE double precision, 
 CITY varchar, STATE char(2), COUNTY varchar, ZIP_CLASS varchar);
