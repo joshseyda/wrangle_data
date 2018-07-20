@@ -9,19 +9,26 @@ csv_out = File.open(dst_dir, 'wb')
 #read from existing file
 
 CSV.foreach(src_dir , :headers => true) do |row|
-  
-  new_row = row.split(',')
-  if new_row[4] == " "
-    if /((...)\-(...))/.match(new_row[3])
-      new_row[4] = new_row[3]
-    elsif /((...)\-(...))/.match(new_row[2])
-      new_row[4] = new_row[3]
+  puts row[4]
+  # new_row = row.split(',')
+  if row[4] == nil
+    if /((...)\-(...))/.match(row[3])
+      puts "reassigning 3 to 4"
+      row[4] = row[3];
+      puts row
+      csv_out << row
+    elsif /((...)\-(...))/.match(row[2])
+      puts "reassigning 2 to 4"
+      row[4] = row[3];
+      puts row
+      csv_out << row
     else
       puts "I can not find the precinct ID in columns 2, 3, or 4!"
     end
-    
+  else
+    csv_out << row 
   end
-  street apt city  state zipcode precinct_id 
+  # street apt city  state zipcode precinct_id 
   #then you can do this 
   # newrow = row.each_with_index { |rowcontent , row_num| puts "#     {rowcontent} #{row_num}" }
 
@@ -35,10 +42,17 @@ CSV.foreach(src_dir , :headers => true) do |row|
 
   #OR use each  ... Add and end 
   #newrow.each do |k,v| puts "#{k} is #{v}"
-  newrow = new_row.join(',')
+  # newrow = row.join(',')
   #Lastly,  write back the edited , regexed data ..etc to an out file.
-  csv_out << newrow
 
+ puts "*"
+ puts "*"
+ puts "*"
+ puts "*"
+ puts "*"
+ puts "*"
+ puts "*"
+ puts "*"
 end
 
 # close the file 
