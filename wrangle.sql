@@ -2,16 +2,24 @@ CREATE DATABASE democracy_works
 DROP TABLE IF EXISTS precinct CASCADE;
 DROP TABLE IF EXISTS citizens CASCADE;
 
-CREATE TABLE precinct 
-(ZIP char(5), LATITUDE double precision, LONGITUDE double precision, 
-CITY varchar, STATE char(2), COUNTY varchar, ZIP_CLASS varchar);
+CREATE TABLE precinct (
+    id integer NOT NULL,
+    street text NOT NULL,
+    city text NOT NULL,
+    state_zip text NOT NULL,
+    precinct_id text NOT NULL
+);
 
-street city state/zip precinct_id
-COPY zip_codes FROM '/path/to/csv/ZIP_CODES.txt' WITH (FORMAT csv);
+CREATE TABLE citizens (
+    id integer NOT NULL,
+    street text NOT NULL,
+    apt text NOT NULL,
+    city text NOT NULL,
+    state text NOT NULL,
+    zipcode text NOT NULL,
+    precinct_id text NOT NULL
+);
 
-CREATE TABLE citizens
-(ZIP char(5), LATITUDE double precision, LONGITUDE double precision, 
-CITY varchar, STATE char(2), COUNTY varchar, ZIP_CLASS varchar);
+COPY precinct FROM 'precinct_polling_list.csv' WITH (FORMAT csv);
 
-street apt city state zip precinct_id 
-COPY zip_codes FROM '/path/to/csv/ZIP_CODES.txt' WITH (FORMAT csv);
+COPY citizens FROM 'addresses.csv' WITH (FORMAT csv);
