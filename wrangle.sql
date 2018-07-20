@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS precincts CASCADE;
 DROP TABLE IF EXISTS citizens CASCADE;
 
 CREATE TABLE precincts (
+    id serial NOT NULL,
     street text NOT NULL,
     city text NOT NULL,
     state_zip text NOT NULL,
@@ -13,6 +14,7 @@ CREATE TABLE precincts (
 );
 
 CREATE TABLE citizens (
+    id serial NOT NULL,
     street text NOT NULL,
     apt text ,
     city text NOT NULL,
