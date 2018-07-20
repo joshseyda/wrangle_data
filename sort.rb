@@ -7,12 +7,18 @@ puts " Writing data to    : #{dst_dir}"
 #create a new file 
 csv_out = File.open(dst_dir, 'wb')
 #read from existing file
+
 CSV.foreach(src_dir , :headers => true) do |row|
   
-  new_row = row.split
+  new_row = row.split(',')
   if new_row[4] == " "
-    
-  else
+    if /((...)\-(...))/.match(new_row[3])
+      new_row[4] = new_row[3]
+    elsif /((...)\-(...))/.match(new_row[2])
+      new_row[4] = new_row[3]
+    else
+      puts "I can not find the precinct ID in columns 2, 3, or 4!"
+    end
     
   end
   street apt city  state zipcode precinct_id 
@@ -29,9 +35,9 @@ CSV.foreach(src_dir , :headers => true) do |row|
 
   #OR use each  ... Add and end 
   #newrow.each do |k,v| puts "#{k} is #{v}"
-
+  newrow = new_row.join(',')
   #Lastly,  write back the edited , regexed data ..etc to an out file.
-  #csv_out << newrow
+  csv_out << newrow
 
 end
 
