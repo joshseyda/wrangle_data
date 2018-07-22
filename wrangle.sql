@@ -30,6 +30,3 @@ COPY citizens(street, apt, city, state, zipcode, precinct_id) FROM '/Users/joshu
 CREATE TABLE new_records AS
 SELECT precincts.street AS "Voting_Street", precincts.city AS "Voting_City", precincts.state_zip AS "Precinct_ZIP", precincts.precinct_id, citizens.street AS "Citizen_Street", citizens.apt AS "Citizen_APT", citizens.city AS "Citizen_City", citizens.state AS "Citizen_State", citizens.zipcode  AS "Citizen_ZIP" FROM precincts
 INNER JOIN citizens ON precincts.precinct_id = citizens.precinct_id;
--- UNION ALL 
--- SELECT citizens.street, citizens.apt, citizens.city, citizens.state, citizens.zipcode, citizens.precinct_id FROM citizens
--- FULL OUTER JOIN citizens ON precincts.precinct_id = citizens.precinct_id;

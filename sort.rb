@@ -5,6 +5,7 @@ dst_dir = "/Users/joshuaseyda/Documents/wdi1/democracy_works/democracy_works_01/
 puts " Reading data from  : #{src_dir}"
 puts " Writing data to    : #{dst_dir}"
 
+# quick reference for re-assigning precint ids to be uniform
 state_codes = {
   "ARI": "004",
   "CAL": "006",
@@ -34,7 +35,7 @@ CSV.foreach(src_dir , headers: true) do |row|
    zip_code = /(\d{5})/.match(row["City"])
    state_code = /([A-Z][A-Z])/.match(row["City"]) || /([A-Z][A-Z])/.match(row["Street"])
    new_zip = "#{state_code} #{zip_code}"
-   row["State/ZIP"] = new_zip
+   row["State/ZIP"] =
   end
   if row["Precinct"] == nil
     # searching for where the precinct value is
@@ -95,14 +96,6 @@ CSV.foreach(src_dir , headers: true) do |row|
     csv_out << row
 
   end
- puts "*"
- puts "*"
- puts "*"
- puts "*"
- puts "*"
- puts "*"
- puts "*"
- puts "*"
 
 end
 
