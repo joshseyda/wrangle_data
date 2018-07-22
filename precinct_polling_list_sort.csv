@@ -12,7 +12,7 @@ Street,City,State/ZIP,Country,Precinct
 5110-5140 Main Street,Buffalo,NY 14221,USA,036-072
 2048 Hillside Avenue,New Hyde Park,NY 11040,USA,036-099
 108 West 2nd Street,Los Angeles,CA 90012,USA,006-021
-29 Godwin Avenue,Ridgewood NJ 07450,USA,USA,034-000
+29 Godwin Avenue,Ridgewood NJ 07450,NJ 07450,USA,034-000
 1093 Hemphill Avenue Northwest,Atlanta,GA 30318,USA,013-000
 328 Boston Road,Billerica,MA 01821,USA,025-010
 1875 South Bascom Avenue,Campbell,CA 95008,USA,006-000
@@ -29,6 +29,6 @@ Street,City,State/ZIP,Country,Precinct
 9600-9708 West Linebaugh Avenue,Westchase,FL 33626,USA,012-067
 3085 Jefferson Street,Napa,CA 94559,USA,006-009
 2313 Frankford Avenue,Philadelphia,PA 19125,USA,042-097
-2035 East North Avenue Milwaukee WI,53211,USA,USA,055-067
+2035 East North Avenue Milwaukee WI,53211,WI 53211,USA,055-067
 110 Community Drive,Augusta,ME 04330,USA,023-027
 114 10th Avenue,New York,NY 10011,USA,036-087

@@ -30,23 +30,25 @@ csv_out << "Street,City,State/ZIP,Country,Precinct
 CSV.foreach(src_dir , headers: true) do |row|
   puts row.inspect
   # the below conditional checks the values in the CSV rows for the format XXX-XXX and allocates the proper values accordingly
-  # if /((\D{2})\s(\d{5}))/.match(row["Street"])
-  #   row["State/ZIP"] = /((\D{2})\s(\d{5}))/.match(row["Street"]).to_s
-  #   puts row["State/ZIP"]
-  # end
-
+  if row["State/ZIP"] == "USA"
+   zip_code = /(\d{5})/.match(row["City"])
+   state_code = /([A-Z][A-Z])/.match(row["City"]) || /([A-Z][A-Z])/.match(row["Street"])
+   new_zip = "#{state_code} #{zip_code}"
+   row["State/ZIP"] = new_zip
+  end
   if row["Precinct"] == nil
-
+    # searching for where the precinct value is
     if /((...)\-(...))/.match(row["Country"])
       puts "reassigning col 3 to col 4"
       string_val = row["Country"].to_s
       split_string = string_val.split("-")
       new_val = state_codes[split_string[0].to_sym]
       row["Precinct"] = "#{new_val}-#{split_string[1]}"
+      # reassigning Country value after making sure the column's value isn't the precinct
       row["Country"] = "USA"
+      # fixing a column's misplaced State/ZIP
       if /((\D{2})\s(\d{5}))/.match(row["Street"])
         row["State/ZIP"] = /((\D{2})\s(\d{5}))/.match(row["Street"]).to_s
-        puts row["State/ZIP"]
       end
       puts row.inspect
       csv_out << row
