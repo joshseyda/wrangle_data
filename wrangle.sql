@@ -28,5 +28,5 @@ COPY precincts(street, city, state_zip, country, precinct_id) FROM '/Users/joshu
 COPY citizens(street, apt, city, state, zipcode, precinct_id) FROM '/Users/joshuaseyda/Documents/wdi1/democracy_works/democracy_works_01/addresses.csv' DELIMITER ',' CSV HEADER;  
 
 CREATE TABLE new_records AS
-SELECT precincts.street AS "Voting_Street", precincts.city AS "Voting_City", precincts.state_zip AS "Precinct_ZIP", precincts.precinct_id, citizens.street AS "Citizen_Street", citizens.apt AS "Citizen_APT", citizens.city AS "Citizen_City", citizens.state AS "Citizen_State", citizens.zipcode  AS "Citizen_ZIP" FROM precincts
+SELECT precincts.precinct_id AS "ID", precincts.street AS "Voting_Street", precincts.city AS "Voting_City", precincts.state_zip AS "Precinct_ZIP", citizens.street AS "Citizen_Street", citizens.apt AS "Citizen_APT", citizens.city AS "Citizen_City", citizens.state AS "Citizen_State", citizens.zipcode  AS "Citizen_ZIP" FROM precincts
 INNER JOIN citizens ON precincts.precinct_id = citizens.precinct_id;
